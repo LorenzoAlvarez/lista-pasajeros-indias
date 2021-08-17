@@ -1,0 +1,58 @@
+# Schema made with quickdatabasediagrams.com
+
+Entry
+-
+EntryID PK int
+Volume varchar(20)
+number date.year
+text varchar(500)
+
+License
+-
+LicenseID PK int 
+EntryID int FK - Entry.EntryID
+PersonID int FK - Person.PersonID
+DestinyID FK >- Location.LocationID
+
+File
+-
+FileID PK int
+Name varchar(100)
+Book varchar(100)
+Owner varchar(50)
+Page int
+
+FileEntry
+-
+FileID FK >- File.FileID
+EntryID FK >- Entry.EntryID
+
+Person
+-
+PersonID PK int
+LicenseID FK >- License.LicenseID
+Name varchar(20)
+Surname1 varchar(30) NULL
+Surname2 varchar(30) NULL
+OriginID FK >- Location.LocationID NULL
+Married boolean
+Work FK >- Work.WorkID NULL
+Comment varchar(500)
+
+Location
+-
+LocationID PK int
+Name varchar(50)
+
+Work
+-
+WorkID int PK
+Name varchar(20)
+InCharge varchar(50)
+
+Relationship
+-
+RelationshipID PK int
+PersonID1 FK >- Person.PersonID
+PersonID2 FK >- Person.PersonID
+Relationship String Index
